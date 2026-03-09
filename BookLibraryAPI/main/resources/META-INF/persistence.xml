@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <!--
+        Persistence Unit — a named configuration block for JPA.
+        "BookLibraryPU" is the name referenced in JPAUtil.java.
+        transaction-type="RESOURCE_LOCAL" means we manage transactions
+        manually (em.getTransaction().begin() / commit()), rather than
+        relying on a Jakarta EE container to manage them.
+    -->
+    <persistence-unit name="BookLibraryPU" transaction-type="RESOURCE_LOCAL">
+
+        <!--
+            The JPA provider — tells the app to use Hibernate under the hood.
+            Hibernate is the most popular JPA implementation.
+        -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!--
+            List all entity classes that JPA should manage.
+            Any class annotated with @Entity needs to be listed here.
+        -->
+        <class>com.booklibrary.entity.Book</class>
+
+        <properties>
+
+            <!-- ==========================================
+                 Database Connection Settings
+                 ========================================== -->
+
+            <!--
+                JDBC driver class for SQLite.
+                This is the Java class that knows how to talk to a SQLite file.
+            -->
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="org.sqlite.JDBC"/>
+
+            <!--
+                The database URL.
+                "jdbc:sqlite:library.db" creates (or opens) a file called
+                "library.db" in the directory where you run the app.
+
+                For an in-memory database (data lost on restart), use:
+                "jdbc:sqlite::memory:"
+            -->
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:sqlite:library.db"/>
+
+            <!--
+                SQLite doesn't use username/password — leave these empty.
+            -->
+            <property name="jakarta.persistence.jdbc.user" value=""/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- ==========================================
+                 Hibernate-Specific Settings
+                 ========================================== -->
+
+            <!--
+                The SQL dialect tells Hibernate which database-specific SQL
+                syntax to use when generating queries.
+                SQLiteLegacyDialect is from hibernate-community-dialects.
+            -->
+            <property name="hibernate.dialect"
+                      value="org.hibernate.community.dialect.SQLiteLegacyDialect"/>
+
+            <!--
+                hbm2ddl.auto controls database schema management:
+                  - "create"       : drop and recreate tables on every startup (wipes data!)
+                  - "create-drop"  : like create, but also drops on shutdown
+                  - "update"       : update schema if entities changed (keeps data)
+                  - "validate"     : check schema matches entities, throw error if not
+                  - "none"         : do nothing (you manage the schema yourself)
+                
+                "update" is good for development — it creates the table on first run
+                and leaves existing data alone on subsequent runs.
+            -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <!--
+                Show generated SQL in the console — great for learning and debugging!
+                Set to "false" in production to reduce log noise.
+            -->
+            <property name="hibernate.show_sql" value="true"/>
+
+            <!--
+                Format the SQL output to be human-readable (multi-line, indented).
+            -->
+            <property name="hibernate.format_sql" value="true"/>
+
+        </properties>
+    </persistence-unit>
+
+</persistence>
