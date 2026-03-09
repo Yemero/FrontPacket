@@ -1,0 +1,2 @@
+pyinstaller
+readchar~=4.2.1
