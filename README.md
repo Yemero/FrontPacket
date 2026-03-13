@@ -1,12 +1,12 @@
 # FrontPacket
-Collection of personal projects.
-
+A collection of personal projects spanning web development, tools, and experiments. Built to learn, ship, and iterate.
 ---
 
-## [BookLibaryAPI](https://github.com/Yemero/FrontPacket/blob/main/BookLibraryAPI/BookLibraryAPI_README.md)
+## [Job Application Tracker](https://github.com/Yemero/job-application-tracker)
 
-- Simple RESTful API for managing a personal book library, built as a portfolio project to practice & demonstrate backend development skills with Java.
+- A personal job application tracker — log applications, track statuses, and visualize your job search pipeline.
+- Built with React, Vite, and Tailwind CSS. Data persists locally via localStorage.
 
-## [UnnamedTextBasedGame](https://github.com/Yemero/FrontPacket/blob/main/UnnamedTextBasedGame/UnnamedTextBasedGame_README.md)
+## [UnnamedTextBasedGame]()
 
-- Text driven game using **Python**, **React** and **Twine** to create a evolving sotry driven game based on player actions/choices.
+- TODO
