@@ -1,3 +1,6 @@
 BookLibraryAPI/Planning.md
 target/
 *.db
+
+# Nested git repos
+Job Application Tracker/
